@@ -5,7 +5,13 @@ const atividades = [];
 const notas = [];
 const spanAprovado = '<span class="aprovado">Aprovado</span>';
 const spanReprovado = '<span class="reprovado">Reprovado</span>';
-const notaMinima = parseFloat(prompt('Digite a nota mínima para aprovação:'));
+let notaMinima;
+
+    do {
+        notaMinima = prompt('Digite a nota mínima para aprovação:');
+    } while (notaMinima === null || notaMinima.trim() === "" || isNaN(notaMinima));
+
+notaMinima = parseFloat(notaMinima);
 
 let linhas = '';
 
@@ -49,7 +55,7 @@ function AtualizaTabela() {
 function AtualizaMediaFinal() {
     const mediaFinal = calculaMediaFinal();
 
-    document.getElementById('media-final-valor').innerHTML = mediaFinal;
+    document.getElementById('media-final-valor').innerHTML = mediaFinal.toFixed(2);
     document.getElementById('media-final-resultado').innerHTML = mediaFinal >= notaMinima ? spanAprovado : spanReprovado;
 
 }
